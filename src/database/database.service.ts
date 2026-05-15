@@ -16,7 +16,7 @@ export class DatabaseService implements OnModuleDestroy {
     const url = this.config.get<string>('DATABASE_URL')!;
     this.client = postgres(url, { max: 10 });
     this.db = drizzle(this.client, { schema, logger: false });
-    this.logger.log('Database connection established');
+    this.logger.log('Database client initialized (connection is lazy)');
   }
 
   async onModuleDestroy() {
