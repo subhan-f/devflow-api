@@ -10,16 +10,21 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
+    "start:dev": "tsx watch src/main.ts",
+    "start:debug": "tsx --inspect src/main.ts",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cov": "vitest run --coverage",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"
+  },
+  "pnpm": {
+    "overrides": {
+      "glob@<10": "^10.4.5"
+    }
   },
   "dependencies": {
     "@nestjs/common": "^11.1.21",
@@ -34,23 +39,6 @@
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2"
   },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
-  },
   "devDependencies": {
     "@nestjs/cli": "^11.0.21",
     "@nestjs/schematics": "^11.1.0",
@@ -58,13 +46,14 @@
     "@types/node": "^25.8.0",
     "@typescript-eslint/eslint-plugin": "^8.59.3",
     "@typescript-eslint/parser": "^8.59.3",
+    "@vitest/coverage-v8": "^3.2.2",
     "drizzle-kit": "^0.31.10",
     "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "prettier": "^3.8.3",
-    "ts-jest": "^29.4.9",
-    "ts-node": "^10.9.2",
-    "typescript": "^6.0.3"
+    "tsx": "^4.22.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.6"
   }
 }
